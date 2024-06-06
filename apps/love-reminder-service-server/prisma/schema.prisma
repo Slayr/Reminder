@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Message {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  text      String?
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  createdAt DateTime @default(now())
+  frequency String?
+  id        String   @id @default(cuid())
+  isActive  Boolean?
+  updatedAt DateTime @updatedAt
+}
+
+model Milestone {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  label     String?
+  startDate DateTime?
+  updatedAt DateTime  @updatedAt
+}
